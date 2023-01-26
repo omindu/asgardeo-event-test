@@ -9,7 +9,12 @@ listener asgardeo:Listener webhookListener =  new(config,httpListener);
 service asgardeo:NotificationService on webhookListener {
   
     remote function onSmsOtp(asgardeo:SmsOtpNotificationEvent event ) returns error? {
-      //Not Implemented
+      asgardeo:SmsOtpNotificationData? eventData = event.eventData;
+      string toNumber = <string> check eventData.toJson().sendTo;
+      string message = <string> check eventData.toJson().messageBody;
+
+      string response = check sendSmsClient -> sendSms(toNumber, message);
+      log:printInfo(response);
     }
 }
 
