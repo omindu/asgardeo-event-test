@@ -16,16 +16,16 @@ service asgardeo:NotificationService on webhookListener {
         log:printInfo(event.toJsonString());
 
         //read data from the event.
-        asgardeo:SmsOtpNotificationData? eventData = event.eventData;
-        string toNumber = <string> check eventData.toJson().sendTo;
-        string message = <string> check eventData.toJson().messageBody;
+        //asgardeo:SmsOtpNotificationData? eventData = event.eventData;
+        //string toNumber = <string> check eventData.toJson().sendTo;
+        //string message = <string> check eventData.toJson().messageBody;
 
         //Configure twilio account.
-        sendsms:Client sendSmsClient = check new ();
+        //sendsms:Client sendSmsClient = check new ();
 
-        string response = check sendSmsClient -> sendSms(toNumber, message);
+        //string response = check sendSmsClient -> sendSms(toNumber, message);
 
-        log:printInfo(response);
+        //log:printInfo(response);
     }
 }
 
